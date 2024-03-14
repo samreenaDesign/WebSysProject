@@ -49,7 +49,7 @@
                     </figure>
                     <p>
                         A tabby cat is a cat with a distinctive coat and informally 
-                        to refer to any domestic cat, particularly a female one.
+                        to refer to any domestic cat, particularly a female one. Males are...
                     </p>
                 </article>
                 <article class="col-sm">

@@ -11,7 +11,7 @@
             <h1>Member Registration</h1>
             <p>
                 For existing members, please go to the
-                <a href="#">Sign In page</a>.
+                <a href="login.php">Sign In page</a>
             </p>
             <form action="process_register.php" method="post">
                 <div class="mb-3">

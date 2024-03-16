@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 include "inc/head.inc.php";
-?>
 
-<?php
 $email = $password = $errorMsg = "";
 $success = true;
 
@@ -34,10 +29,10 @@ if (empty($_POST["email"])) {
 
 // Validate password
 if (empty($_POST["password"])) {
-    $errorMsg .= "password is required.<br>";
+    $errorMsg .= "Password is required.<br>";
     $success = false;
 } else {
-   
+    // No need to sanitize password as it will be hashed for comparison later
 }
 
 if ($success) {
@@ -49,7 +44,11 @@ if ($success) {
         echo '<div class="alert alert-success" role="alert">';
         echo "<h4 class='alert-heading'>Login successful!</h4>";
         echo "<p>Welcome back, $fname $lname!</p>";
-        echo '<a href="index.php" class="btn btn-success">Return to Home</a>';
+        // Logout button
+        echo '<form action="process_login.php" method="post">';
+        echo '<input type="hidden" name="logout" value="true">';
+        echo '<button type="submit" class="btn btn-danger">Logout</button>';
+        echo '</form>';
         echo '</div>';
     } else {
         // User authentication failed
@@ -93,6 +92,9 @@ function authenticateUser()
             $errorMsg = "Connection failed: " . $conn->connect_error;
             $success = false;
         } else {
+            // Set default timezone to GMT+8
+            date_default_timezone_set('Asia/Shanghai'); // Change 'Asia/Shanghai' to your desired timezone
+
             // Prepare the statement:
             $stmt = $conn->prepare("SELECT * FROM world_of_pets_members WHERE email=?");
             // Bind & execute the query statement:
@@ -112,6 +114,16 @@ function authenticateUser()
                     // need to know which one they got right or wrong. :)
                     $errorMsg = "Email not found or password doesn't match...";
                     $success = false;
+                } else {
+                    // Password matches, update login status and time
+                    $loggedIn = 1;
+                    $lastLoginTime = date('Y-m-d H:i:s'); // Get current time in GMT+8
+                    $stmt_update = $conn->prepare("UPDATE world_of_pets_members SET loggedin=?, lastlogintime=? WHERE email=?");
+                    $stmt_update->bind_param("iss", $loggedIn, $lastLoginTime, $email);
+                    if (!$stmt_update->execute()) {
+                        $errorMsg = "Failed to update login status and time.";
+                        $success = false;
+                    }
                 }
             } else {
                 $errorMsg = "Email not found or password doesn't match...";
@@ -123,7 +135,17 @@ function authenticateUser()
     }
 }
 
-?>
-</body>
+// Logout functionality
+if (isset($_POST['logout'])) {
+    
+    $member_id = $_SESSION['member_id'];
+    $update_stmt = $conn->prepare("UPDATE world_of_pets_members SET isloggedin = 0, lastlogintime = NOW() WHERE member_id = ?");
+    $update_stmt->bind_param("i", $member_id);
+    $update_stmt->execute();
+    
+    session_unset();
+    session_destroy();
+}
 
-</html>
+include "inc/footer.inc.php";
+?>

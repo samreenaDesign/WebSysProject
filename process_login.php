@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start the session
+
 include "inc/head.inc.php";
 
 $email = $password = $errorMsg = "";
@@ -45,7 +47,7 @@ if ($success) {
         echo "<h4 class='alert-heading'>Login successful!</h4>";
         echo "<p>Welcome back, $fname $lname!</p>";
         // Logout button
-        echo '<form action="process_login.php" method="post">';
+        echo '<form action="logout.php" method="post">';
         echo '<input type="hidden" name="logout" value="true">';
         echo '<button type="submit" class="btn btn-danger">Logout</button>';
         echo '</form>';
@@ -70,10 +72,9 @@ if ($success) {
     echo '</div>';
 }
 
-// Helper function to authenticate the login.
 function authenticateUser()
 {
-    global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
+    global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $conn;
 
     // Create database connection.
     $config = parse_ini_file('/var/www/private/db-config.ini');
@@ -123,6 +124,9 @@ function authenticateUser()
                     if (!$stmt_update->execute()) {
                         $errorMsg = "Failed to update login status and time.";
                         $success = false;
+                    } else {
+                        // Set member_id in session
+                        $_SESSION['member_id'] = $row['member_id'];
                     }
                 }
             } else {
@@ -135,17 +139,8 @@ function authenticateUser()
     }
 }
 
-// Logout functionality
-if (isset($_POST['logout'])) {
-    
-    $member_id = $_SESSION['member_id'];
-    $update_stmt = $conn->prepare("UPDATE world_of_pets_members SET isloggedin = 0, lastlogintime = NOW() WHERE member_id = ?");
-    $update_stmt->bind_param("i", $member_id);
-    $update_stmt->execute();
-    
-    session_unset();
-    session_destroy();
-}
 
 include "inc/footer.inc.php";
 ?>
+
+

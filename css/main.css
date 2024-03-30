@@ -1,43 +1,16 @@
- main h2 {
-    text-decoration: underline;
-}
-
-article img {
-    border: 5px double black;
-}
-
-figure {
-    display: inline-block;
-}
-
-figcaption {
-    color: gray;
-    font-style: italic;
-    text-align: center;
-}
-
-header {
-   background-color: rgb(100, 100, 100);
-   color: white;
-   padding: 50px;
-   margin-bottom:20px;
-}
-
 footer {
-    border-top: 2px solid gray;
+    border-top: 2px solid grey;
     text-align: center;
     font-size: smaller;
-    color: gray;
+    color: grey;
     padding: 15px;
-}
-
-.navbar-brand {
-    margin-left: 20px;
 }
 
 .nav-item {
     margin-left: 40px;
 }
+
+
 
 
 .img-popup {
@@ -51,3 +24,115 @@ footer {
     /* Add any additional styling for the popup here */
 }
 
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #dfceb7;
+    padding: 10px;
+}
+
+.dropdown-item {
+    color: black;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.login-pic {
+    max-width: none; /* Remove the maximum width */
+    width: 100%; /* Set width to 100% */
+    height: auto;
+    display: block;
+    float: right;
+}
+
+.login-container {
+    border-radius: 20px;
+    background-color: #d4cab8;
+    margin: 50px;
+}
+
+.register-pic {
+    max-width: none; /* Remove the maximum width */
+    width: 100%; /* Set width to 100% */
+    height: auto;
+    display: block;
+    float: right;
+}
+
+.register-container {
+    border-radius: 20px;
+    background-color: #d4cab8;
+    margin: 50px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+#cart-dropdown .dropdown-menu {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    width: 500px;
+    height: 400px;
+    overflow-y: auto;
+    background-color: rgb(235, 223, 203);
+    padding: 20px;
+    z-index: 10000; /* Increase z-index */
+}
+
+#cart-dropdown .cart-items {
+    max-height: calc(100% - 70px); /* Adjusted for padding and button height */
+    overflow-y: auto;
+}
+
+#cart-dropdown .dropdown-menu .btn {
+    position: absolute;
+    bottom: 10px;
+    right: 50%; /* Move button to the right by 50% of its containing block */
+    transform: translateX(50%); /* Move button back by 50% of its own width */
+    z-index: 9999;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-item p {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 0; /* Add this line to remove default bottom margin */
+    flex-grow: 1; /* Add this line to make the paragraph take up remaining vertical space */
+    display: flex; /* Add this line to enable flexbox */
+    align-items: center; /* Add this line to center the text vertically */
+}
+
+.quantity-controls {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+.remove-button {
+    margin-left: 20px; /* Adjust margin as needed */
+    margin-bottom: 20px;
+}
+
+/* Custom CSS */
+@media (max-width: 576px) { /* Adjust the max-width to just below the Bootstrap 5.3 breakpoint */
+    .img-small {
+        width: 30px; /* Adjust the width as needed */
+        height: 30px; /* Adjust the height as needed */
+    }
+}

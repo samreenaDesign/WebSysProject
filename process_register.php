@@ -8,6 +8,7 @@ include "inc/head.inc.php";
 <body>
     <?php
     include "inc/nav.inc.php";
+    session_start();
 
     // Define variables and initialize with empty values
     $fname = $lname = $email = $password = $pwd_confirm = "";
@@ -100,12 +101,19 @@ include "inc/head.inc.php";
             global $fname, $lname, $email, $password, $errorMsg, $success;
 
             // Create database connection
-            $config = parse_ini_file('/var/www/private/db-config.ini');
-            if (!$config) {
-                $errorMsg = "Failed to read database config file.";
-                $success = false;
-            } else {
-                $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+            // $config = parse_ini_file('/var/www/private/db-config.ini');
+            // if (!$config) {
+            //     $errorMsg = "Failed to read database config file.";
+            //     $success = false;
+            // } else {
+             //   $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+             require_once('db_connection.php');   
+             $conn = new mysqli(
+                    $servername,
+                    $username,
+                    $password,
+                    $database,
+                );
 
                 // Check connection
                 if ($conn->connect_error) {
@@ -116,7 +124,7 @@ include "inc/head.inc.php";
                     $pwd_hashed = password_hash($password, PASSWORD_DEFAULT);
 
                     // Prepare the statement
-                    $stmt = $conn->prepare("INSERT INTO world_of_pets_members (fname, lname, email, password) VALUES (?, ?, ?, ?)");
+                    $stmt = $conn->prepare("INSERT INTO glaskin_members (fname, lname, email, password) VALUES (?, ?, ?, ?)");
 
                     // Bind parameters and execute the query statement
                     $stmt->bind_param("ssss", $fname, $lname, $email, $pwd_hashed);
@@ -129,7 +137,7 @@ include "inc/head.inc.php";
                     $stmt->close();
                     $conn->close();
                 }
-            }
+    
         }
 
         // Include navigation bar and footer

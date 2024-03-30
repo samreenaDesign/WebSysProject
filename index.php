@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
+    <p style="font-size: 15px;"text-align: center; background-color: #a1be7e;>Free Shippin on orders over $48</p>
+</header>
     <?php
         include "inc/head.inc.php";
     ?>
@@ -7,72 +10,62 @@
         <?php
             include "inc/nav.inc.php";
         ?>
-        <?php
-            include "inc/header.inc.php";
-        ?>
-        <main class="container">
-            <section id="dogs">
-                <h2>All About Dogs!</h2>
-                <div class="row">
-                <article class="col-sm">
-                    <h3>Poodles</h3>
-                    <figure>
-                        <img class="img-thumbnail" src="images/poodle_small.jpg" alt="Poodle" title="View larger image...">
-                        <figcaption>Standard Poodle</figcaption>
-                    </figure>  
-                    <p>
-                        Poodles are a group of formal dog breeds, the Standard
-                        Poodle, Miniature Poodle and Toy Poodle...
-                    </p>
-                </article>
-                <article class="col-sm">
-                    <h3>Chihuahua</h3>
-                    <figure>
-                        <img class="img-thumbnail" src="images/chihuahua_small.jpg" alt="Chihuahua" title="View larger image...">
-                        <figcaption>Chihuahua</figcaption>
-                    </figure>
-                    <p>
-                        The Chihuahua is the smallest breed of dog, and is named
-                        after the Mexican state of Chihuahua...
-                    </p>
-                </article>
+    <div class="carousel">
+        
+        <h2 class="carousel-title" style="text-align: center;">Our Featured Brands</h2>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/Edobio_Slider.jpg" class="d-block w-100" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="font-size: 45px;">Edobio</h5>
                 </div>
-            </section>
-            <section id="cats">
-                <h2>All About Cats!</h2>
-                <div class="row">
-                <article class="col-sm">
-                    <h3>Tabby</h3>
-                    <figure>
-                        <img class="img-thumbnail" src="images/tabby_small.jpg" alt="Tabby" title="View larger image...">
-                        <figcaption>Tabby Cat</figcaption>
-                    </figure>
-                    <p>
-                        A tabby cat is a cat with a distinctive coat and informally 
-                        to refer to any domestic cat, particularly a female one.
-                    </p>
-                </article>
-                <article class="col-sm">
-                    <h3>Calico</h3>
-                    <figure>
-                        <img class="img-thumbnail" src="images/calico_small.jpg" alt="Calico" title="View larger image...">
-                        <figcaption>Calico Cat</figcaption>
-                    </figure>
-                    <p>
-                        A calico cat is a domestic cat of any breed with a tri-color 
-                        coat. The calico cat is most commonly thought of as being 25% to 75% white with ...
-                    </p>
-                </article>
-                </div>
-            </section>
-        </main>
-        <?php
-            include "inc/footer.inc.php";
-        ?>
-    </body>
+            </div>
+        <div class="carousel-item">
+            <img src="images/KylieSkin_Slider.jpg" class="d-block w-100" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="font-size: 45px;">Kylie Skin</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="path_to_your_third_image.jpg" class="d-block w-100" alt="Third slide">
+        </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+        
+
+    <!-- Additional Content Sections -->
+    <section id="skincare-routine">
+        <h2>Addition content here</h2>
+        <div class="row">
+            <!-- Content about skincare routines -->
+        </div>
+    </section>
+    </div>
+        <?php include "inc/footer.inc.php"; ?>
+
+<!-- please check on this: is it suppose to be here? the boostrap script -->
+<!-- Swiper JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+</script>
+</body>
 </html>
-
-<option value class label="Select gender"></option>
-
-<img width="auto" height="117px" ng-src="https://media.gv.com.sg/movies/images/deluxe_plus_cinema.jpg" 
-alt="Deluxe Plus Cinema" src="https://media.gv.com.sg/movies/images/deluxe_plus_cinema.jpg">
